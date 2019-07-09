@@ -5,7 +5,10 @@ export default ({children}) =>{
    return (
       <div className="layout">
          <Navbar/>
-         {children}
+
+         <div className="layout-children">
+            {children}
+         </div>
       </div>
    )
 }

@@ -3,7 +3,7 @@ import React from 'react'
 export default props => {
 
    return (
-      <div className="indexPage">
+      <div>
          Favorites pages
       </div>
    )
