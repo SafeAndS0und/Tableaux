@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
-import NavbarStyles from './Navbar.module.scss'
+import styles from './Navbar.module.scss'
 import {GoMarkGithub, GoSearch} from 'react-icons/go'
 
 export default props =>{
@@ -10,14 +10,14 @@ export default props =>{
    return (
       <nav>
 
-         <section className={NavbarStyles.brand}>
+         <section className={styles.brand}>
             <NavLink to="/">Tableaux</NavLink>
          </section>
 
-         <section className={NavbarStyles.navigation}>
+         <section className={styles.navigation}>
 
             <div
-               className={[NavbarStyles.search, isSearching ? NavbarStyles.searching : null].join(' ')}
+               className={[styles.search, isSearching ? styles.searching : null].join(' ')}
                onClick={() => setSearching(!isSearching)}
             >
                <input type="text" placeholder="What do you want to see?" style={{
@@ -28,9 +28,9 @@ export default props =>{
 
             <NavLink to="/favorites">Favorites</NavLink>
 
-            <div className={NavbarStyles.language}>ENG</div>
+            <div className={styles.language}>ENG</div>
 
-            <GoMarkGithub className={NavbarStyles.github}/>
+            <GoMarkGithub className={styles.github}/>
          </section>
       </nav>
    )
