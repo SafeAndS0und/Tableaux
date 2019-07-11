@@ -15,7 +15,9 @@ export default () =>{
    return (
       <section className={styles.images}>
 
-         <div>
+         <h2>Images related to "dog"</h2>
+
+         <div className={styles["images-container"]}>
             {
                imgs.map(img => <Image key={img} source={img}/>)
             }

@@ -1,26 +1,45 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from './Image.module.scss'
 
-export default props => {
+export default props =>{
+
+   const [showCover, toggleShowCover] = useState(false)
 
    return (
-      <article className={styles.image}>
+      <article className={styles.image}
+               onMouseOver={() => toggleShowCover(true)}
+               onMouseOut={() => toggleShowCover(false)}
+      >
 
          <img src={props.source} alt="doggy"/>
-         <div className={styles.dim}>
-         </div>
+         {
+            showCover
+               ? (
+                  <div className={styles.cover}>
 
-         <div className={styles.details}>
-            <div className={styles.info}>
-               <p>By DoggyLover69</p>
-               <span> dog cute animal close-up </span>
-            </div>
+                     <div className={styles.dim}></div>
 
-            <div className={styles.stats}>
-               <span>9420 views</span>
-               <span>142 likes</span>
-            </div>
-         </div>
+                     <div className={styles.details}>
+
+                        <div className={styles.info}>
+                           <p>By
+                              <span> DoggyLover69</span>
+                           </p>
+                           <span> dog cute animal close-up </span>
+                        </div>
+
+                        <div className={styles.stats}>
+                           <span>9420 views</span>
+                           <span>142 likes</span>
+                        </div>
+
+                     </div>
+
+                  </div>
+               )
+               : null
+         }
+
 
       </article>
    )

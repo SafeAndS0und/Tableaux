@@ -2,9 +2,15 @@
   width: 100%;
   margin: 50px 0;
 
-  div {
+  h2 {
+    font-weight: 100;
+    color: #777777;
+    font-size: 2em;
+  }
+
+  .images-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     grid-gap: 10px;
   }
 }
