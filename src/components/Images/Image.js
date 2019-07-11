@@ -7,17 +7,18 @@ export default props =>{
 
    return (
       <article className={styles.image}
-               onMouseOver={() => toggleShowCover(true)}
-               onMouseOut={() => toggleShowCover(false)}
+               onMouseOver={e => toggleShowCover(true)}
+               onMouseOut={e => toggleShowCover(false)}
       >
 
-         <img src={props.source} alt="doggy"/>
+         <img src={props.source} alt="doggy" />
          {
-            showCover
-               ? (
-                  <div className={styles.cover}>
 
-                     <div className={styles.dim}></div>
+                (
+                  <div className={[styles.cover, showCover ? null : styles.hidden].join(' ')}>
+
+                     <div className={styles.dim}>
+                     </div>
 
                      <div className={styles.details}>
 
@@ -37,10 +38,8 @@ export default props =>{
 
                   </div>
                )
-               : null
+
          }
-
-
       </article>
    )
 }
