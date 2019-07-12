@@ -1,17 +1,28 @@
-import {fetchImages} from "../actions/imageActions"
 
 const initalState = {
    images: [],
-   status: false
+   loading: false
 }
 
-export default function(state, action){
+export default function(state = initalState, action){
 
    switch(action.type){
-      case "FETCH_IMAGES" :
-         return {}
+
+      case "FETCH_IMAGES_BEGIN" :
+         return {
+            ...state,
+            loading: true
+         }
 
       case "FETCH_IMAGES_SUCCESS" :
-         return {}
+         return {
+            ...state,
+            images: action.payload.images,
+            loading: false
+         }
+
+      default:
+         return state
+
    }
 }
