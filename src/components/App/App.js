@@ -15,6 +15,7 @@ export default () => {
                <Switch>
                   <Route exact path="/" component={Index}/>
                   <Route path="/favorites" component={Favorites}/>
+                  <Route path="/:img_ID" component={Favorites}/>
                </Switch>
 
             </MainLayout>

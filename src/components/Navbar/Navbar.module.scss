@@ -9,16 +9,28 @@ nav {
   grid-template-columns: 1fr auto;
   grid-gap: 10px;
   transition: .6s;
+  overflow: hidden;
+
+  @media (max-width: 700px) {
+    padding: 9px 10px;
+  }
+
 
   a {
     text-decoration: none;
     color: inherit;
   }
 
+
+
   .brand {
     font-size: 3.5em;
     font-weight: 100;
     color: #575757;
+
+    @media (max-width: 700px) {
+      font-size: 1.8em;
+    }
 
   }
 
@@ -29,6 +41,13 @@ nav {
     align-items: center;
     color: #afafaf;
     font-weight: 100;
+
+    @media (max-width: 700px) {
+
+      .searching {
+        grid-column: 1/-1;
+      }
+    }
 
     .search {
       padding: 6px;

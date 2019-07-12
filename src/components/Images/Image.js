@@ -1,19 +1,20 @@
 import React, {useState} from 'react'
 import styles from './Image.module.scss'
+import { withRouter } from 'react-router-dom'
 
-export default props =>{
+function Image({img, history}){
 
    const [showCover, toggleShowCover] = useState(false)
 
    return (
       <article className={styles.image}
+               onClick={() => history.push(`/${img.id}`)}
                onMouseOver={e => toggleShowCover(true)}
                onMouseOut={e => toggleShowCover(false)}
       >
 
-         <img src={props.source} alt="doggy" />
+         <img src={img.largeImageURL} alt="doggy" />
          {
-
                 (
                   <div className={[styles.cover, showCover ? null : styles.hidden].join(' ')}>
 
@@ -24,14 +25,14 @@ export default props =>{
 
                         <div className={styles.info}>
                            <p>By
-                              <span> DoggyLover69</span>
+                              <span> {img.user}</span>
                            </p>
-                           <span> dog cute animal close-up </span>
+                           <span>{img.tags}</span>
                         </div>
 
                         <div className={styles.stats}>
-                           <span>9420 views</span>
-                           <span>142 likes</span>
+                           <span>{img.views} views</span>
+                           <span>{img.likes} likes</span>
                         </div>
 
                      </div>
@@ -43,3 +44,6 @@ export default props =>{
       </article>
    )
 }
+
+
+export default withRouter(Image)
