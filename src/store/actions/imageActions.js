@@ -1,21 +1,24 @@
 import axios from 'axios'
 
-export const fetchImages = (limit = 8) => {
+export const fetchImages = (query = 'nature', limit = 18 ) => {
    return (dispatch, state) => {
 
-      dispatch(fetchImagesBegin())
+      dispatch(fetchImagesBegin(query, limit))
 
-      axios.get('https://pixabay.com/api/?key=13020972-7188b3caf1136e1d9e80cd75a&q=dogs')
+      const urlBase = 'https://pixabay.com/api/?key=13020972-7188b3caf1136e1d9e80cd75a'
+
+      axios.get(`${urlBase}&q=${query}&per_page=${limit}`)
          .then(res => dispatch(fetchImagesSuccess(res.data.hits)))
          .catch(err => console.log(err))
    }
 }
 
-const fetchImagesBegin = () => ({
-   type: "FETCH_IMAGES_BEGIN"
+const fetchImagesBegin = (query, limit) => ({
+   type: "FETCH_IMAGES_BEGIN",
+   payload: {query, limit}
 })
 
-const fetchImagesSuccess = images => ({
+const fetchImagesSuccess = (images) => ({
    type: "FETCH_IMAGES_SUCCESS",
    payload: {images}
 })
