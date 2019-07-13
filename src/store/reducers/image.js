@@ -6,7 +6,7 @@ const initalState = {
    limit: 18
 }
 
-export default function(state = initalState, action){
+export default (state = initalState, action) => {
 
    switch(action.type){
 

@@ -21,8 +21,8 @@ const Images = ({images, loading}) =>{
 }
 
 const mapStateToProps = state => ({
-   images: state.imageReducer.images,
-   loading: state.imageReducer.loading
+   images: state.image.images,
+   loading: state.image.loading
 })
 
 export default connect(mapStateToProps)(Images)

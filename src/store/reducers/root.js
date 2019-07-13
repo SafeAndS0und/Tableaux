@@ -1,7 +1,9 @@
 import {combineReducers} from 'redux'
-import imageReducer from './imageReducer'
+import image from './image'
+import filter from './filter'
 
 
 export default combineReducers({
-   imageReducer
+   filter,
+   image
 })
