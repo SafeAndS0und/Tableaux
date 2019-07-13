@@ -2,17 +2,32 @@ import React, {useState, useEffect} from 'react'
 import {NavLink} from 'react-router-dom'
 import styles from './Navbar.module.scss'
 import {GoMarkGithub, GoSearch} from 'react-icons/go'
+import {connect} from 'react-redux'
+import {changeQuery} from "../../store/actions/imageActions"
+import {fetchImages} from "../../store/actions/imageActions"
 
-export default props =>{
 
+const Navbar = ({changeQuery, fetchImages}) =>{
+
+   const [query, setQuery] = useState('')
    const [isSearching, setSearching] = useState(false)
    const [scrollY, setScrollY] = useState(0)
 
-   useEffect(() => {
-      window.addEventListener('scroll', () => {
+   useEffect(() =>{
+      window.addEventListener('scroll', () =>{
          setScrollY(window.scrollY)
       })
    })
+
+   const keyUpHandler = e =>{
+      if(e.key === 'Enter') {
+         changeQuery(query)
+         fetchImages(query)
+      }
+      else {
+         setQuery(e.target.value)
+      }
+   }
 
    return (
       <nav className={scrollY > 50 ? styles.withBg : null}>
@@ -27,9 +42,12 @@ export default props =>{
                className={[styles.search, isSearching ? styles.searching : null].join(' ')}
                onClick={() => setSearching(!isSearching)}
             >
-               <input type="text" placeholder="What do you want to see?" style={{
-                  opacity: isSearching ? '1' : '0'
-               }} onClick={e => e.stopPropagation()}/>
+               <input type="text" placeholder="What do you want to see?"
+                      style={{opacity: isSearching ? '1' : '0'}}
+                      onClick={e => e.stopPropagation()}
+                      onKeyUp={keyUpHandler}
+
+               />
                <GoSearch/>
             </div>
 
@@ -42,3 +60,10 @@ export default props =>{
       </nav>
    )
 }
+
+const mapDispatchToProps = dispatch => ({
+   fetchImages: query => dispatch(fetchImages(query)),
+   changeQuery: query => dispatch(changeQuery(query))
+})
+
+export default connect(null, mapDispatchToProps)(Navbar)

@@ -3,12 +3,12 @@ import Image from './Image'
 import styles from './Images.module.scss'
 import { connect } from "react-redux";
 
-const Images = ({images, loading}) =>{
+const Images = ({images, loading, query}) =>{
 
    return (
       <section className={styles.images}>
 
-         <h2>Images related to "dog"</h2>
+         <h2>Images related to "{query}"</h2>
 
          <div className={styles["images-container"]}>
             {
@@ -21,6 +21,7 @@ const Images = ({images, loading}) =>{
 }
 
 const mapStateToProps = state => ({
+   query: state.image.query,
    images: state.image.images,
    loading: state.image.loading
 })

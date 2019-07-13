@@ -98,12 +98,13 @@ nav {
 
     .searching {
       width: 240px;
-      border-color: #9FFFC2;
-      box-shadow: 2px 2px 6px 0 rgb(174, 232, 190);
+      border-color: #e0e0e5;
+      box-shadow: 4px 4px 6px 0 rgb(235, 235, 248);
 
       &:hover {
-        border-color: #9FFFC2;
+        border-color: #d7d7dc;
       }
+
     }
 
     a {

@@ -25,6 +25,12 @@ export default (state = initalState, action) => {
             loading: false
          }
 
+      case "CHANGE_QUERY" :
+         return {
+            ...state,
+            query: action.payload.query
+         }
+
       default:
          return state
 

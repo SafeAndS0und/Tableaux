@@ -24,3 +24,10 @@ const fetchImagesSuccess = (images) => ({
    type: "FETCH_IMAGES_SUCCESS",
    payload: {images}
 })
+
+// --------------------- //
+
+export const changeQuery = (query) => ({
+   type: "CHANGE_QUERY",
+   payload: {query}
+})
