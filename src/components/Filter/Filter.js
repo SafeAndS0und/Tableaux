@@ -7,6 +7,16 @@ export default () =>{
 
    const [filterExpanded, toggleFilterExpanded] = useState(false)
 
+   const f = {
+      categories: ['fashion', 'nature', 'backgrounds', 'science', 'education', 'people',
+         'feelings', 'religion', 'health', 'places', 'animals', 'industry', 'food', 'computer'],
+      colors: ["red", "orange", "yellow", "green", "turquoise",
+         "blue", "lilac", "pink", "white", "gray", "black", "brown"],
+      styles: ["photo", "illustration", "vector"]
+   }
+
+   const [filters, setFilters] = useState(f)
+
    return (
       <section className={styles.filter}>
 
@@ -21,16 +31,34 @@ export default () =>{
             <div>
                <article>
                   <h3>By category</h3>
-                  <p>
-                     fashion, nature, backgrounds, science, education, people, feelings, religion, health, places,
-                     animals, industry, food, computer
-                  </p>
+                  <div>
+                     {filters.categories.map(category => <span>{category} </span>)}
+                  </div>
                </article>
                <article>
                   <h3>By color</h3>
-                  <p>
-                     blue red yellow green black white
-                  </p>
+                  <div>
+                     {
+                        filters.colors.map(color =>
+                              <span style={{backgroundColor: color}} className={styles.color}>
+                              </span>
+                        )}
+                  </div>
+               </article>
+               <article>
+                  <h3>By style</h3>
+                  <div>
+                     {
+                        filters.styles.map(style=>
+                           <span>{style}</span>
+                        )}
+                  </div>
+               </article>
+               <article>
+                  <h3>Sort by</h3>
+                  <div>
+                     <p>Popular Latest</p>
+                  </div>
                </article>
             </div>
          </Fade>
