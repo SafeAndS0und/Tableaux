@@ -12,7 +12,8 @@ export default () =>{
          'feelings', 'religion', 'health', 'places', 'animals', 'industry', 'food', 'computer'],
       colors: ["red", "orange", "yellow", "green", "turquoise",
          "blue", "lilac", "pink", "white", "gray", "black", "brown"],
-      styles: ["photo", "illustration", "vector"]
+      styles: ["all", "photo", "illustration", "vector"],
+      order: ["popular", "latest"]
    }
 
    const [filters, setFilters] = useState(f)
@@ -35,31 +36,49 @@ export default () =>{
                      {filters.categories.map(category => <span>{category} </span>)}
                   </div>
                </article>
-               <article>
-                  <h3>By color</h3>
-                  <div>
-                     {
-                        filters.colors.map(color =>
-                              <span style={{backgroundColor: color}} className={styles.color}>
-                              </span>
-                        )}
-                  </div>
+
+               <article className={styles["by-color"]}>
+
+                  <section>
+                     <h3>By color</h3>
+                     <div>
+                        {
+                           filters.colors.map(color =>
+                              <span style={{backgroundColor: color}} className={styles.color}></span>
+                           )}
+                     </div>
+                  </section>
+
+                  <section>
+                     <h3>By size</h3>
+                     <div>
+                        <input type="text" placeholder="Minimal Width"/>
+                        <input type="text" placeholder="Maximal Width"/>
+                     </div>
+                  </section>
+
                </article>
+
                <article>
                   <h3>By style</h3>
                   <div>
                      {
-                        filters.styles.map(style=>
+                        filters.styles.map(style =>
                            <span>{style}</span>
                         )}
                   </div>
                </article>
+
                <article>
                   <h3>Sort by</h3>
                   <div>
-                     <p>Popular Latest</p>
+                     {
+                        filters.order.map(orderType =>
+                           <span>{orderType}</span>
+                        )}
                   </div>
                </article>
+
             </div>
          </Fade>
 
