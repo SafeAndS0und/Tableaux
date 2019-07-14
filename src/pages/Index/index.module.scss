@@ -1,10 +1,12 @@
+@import "../../assets/css/variables";
+
 .content {
 
   display: block;
   margin: 45px auto;
   width: 82%;
 
-  @media (max-width: 700px) {
+  @media (max-width: $mobile) {
     width: 95%;
   }
 }

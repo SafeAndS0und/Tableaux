@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import styles from './Filter.module.scss'
 import {FaAngleDoubleDown} from 'react-icons/fa'
-import {CSSTransition} from 'react-transition-group'
-import fade from '../../assets/css/transitions/fade.module.css'
+import Fade from '../../assets/transitions/Fade'
 
 export default () =>{
 
@@ -18,7 +17,7 @@ export default () =>{
 
          </h2>
 
-         <CSSTransition in={filterExpanded} timeout={500} unmountOnExit classNames={{...fade}}>
+         <Fade toggle={filterExpanded}>
             <div>
                <article>
                   <h3>By category</h3>
@@ -34,7 +33,7 @@ export default () =>{
                   </p>
                </article>
             </div>
-         </CSSTransition>
+         </Fade>
 
       </section>
    )

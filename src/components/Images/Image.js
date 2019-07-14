@@ -1,21 +1,23 @@
 import React, {useState} from 'react'
 import styles from './Image.module.scss'
-import { withRouter } from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
+import Fade from '../../assets/transitions/Fade'
 
 function Image({img, history}){
 
    const [showCover, toggleShowCover] = useState(false)
 
    return (
+
       <article className={styles.image}
                onClick={() => history.push(`/${img.id}`)}
                onMouseOver={e => toggleShowCover(true)}
                onMouseOut={e => toggleShowCover(false)}
       >
-
-         <img src={img.largeImageURL} alt="doggy" />
+         <img src={img.largeImageURL} alt="doggy"/>
          {
-                (
+            (
+               <Fade toggle={showCover}>
                   <div className={[styles.cover, showCover ? null : styles.hidden].join(' ')}>
 
                      <div className={styles.dim}>
@@ -38,7 +40,8 @@ function Image({img, history}){
                      </div>
 
                   </div>
-               )
+               </Fade>
+            )
 
          }
       </article>

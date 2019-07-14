@@ -1,3 +1,5 @@
+@import '../../assets/css/variables.scss';
+
 nav {
   z-index: 100;
   position: sticky;
@@ -11,7 +13,7 @@ nav {
   transition: .6s;
   overflow: hidden;
 
-  @media (max-width: 700px) {
+  @media (max-width: $mobile) {
     padding: 9px 10px;
   }
 
@@ -28,7 +30,7 @@ nav {
     font-weight: 100;
     color: #575757;
 
-    @media (max-width: 700px) {
+    @media (max-width: $mobile) {
       font-size: 1.8em;
     }
 
@@ -42,7 +44,7 @@ nav {
     color: #afafaf;
     font-weight: 100;
 
-    @media (max-width: 700px) {
+    @media (max-width: $mobile) {
 
       .searching {
         grid-column: 1/-1;

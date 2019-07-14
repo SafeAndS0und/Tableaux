@@ -6,7 +6,7 @@ export const fetchImages = (query = 'nature', limit = 18 ) => {
       dispatch(fetchImagesBegin(query, limit))
 
       const {byCategory, byColors, bySize, byImageType, order} = state()['filter']
-      const urlBase = 'https://pixabay.com/api/?key=13020972-7188b3caf1136e1d9e80cd75a'
+      const urlBase = `https://pixabay.com/api/?key=${process.env.REACT_APP_API_KEY}`
       const filterOptions = `image_type=${byImageType}&order=${order}&category=${byCategory}&colors=${byColors}`
 
       axios.get(`${urlBase}&q=${query}&per_page=${limit}&${filterOptions}`)
