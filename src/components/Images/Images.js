@@ -1,10 +1,12 @@
 import React from 'react'
 import Image from './Image'
 import styles from './Images.module.scss'
-import {connect} from "react-redux"
+import {useSelector} from "react-redux"
 import Fade from '../../assets/transitions/Fade'
 
-const Images = ({images, loading, query}) =>{
+export default () => {
+
+   const {images, loading, query} = useSelector(state => state.image)
 
    return (
       <section className={styles.images}>
@@ -22,11 +24,3 @@ const Images = ({images, loading, query}) =>{
       </section>
    )
 }
-
-const mapStateToProps = state => ({
-   query: state.image.query,
-   images: state.image.images,
-   loading: state.image.loading
-})
-
-export default connect(mapStateToProps)(Images)

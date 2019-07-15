@@ -2,8 +2,11 @@ import React, {useState} from 'react'
 import styles from './Filter.module.scss'
 import {FaAngleDoubleDown} from 'react-icons/fa'
 import Fade from '../../assets/transitions/Fade'
+import {useSelector} from 'react-redux'
 
 export default () =>{
+
+   const currFilter = useSelector(state => state.filter)
 
    const [filterExpanded, toggleFilterExpanded] = useState(false)
 
@@ -17,6 +20,11 @@ export default () =>{
    }
 
    const [filters, setFilters] = useState(f)
+
+
+   const handleClick = e => {
+
+   }
 
    return (
       <section className={styles.filter}>
@@ -33,7 +41,7 @@ export default () =>{
                <article>
                   <h3>By category</h3>
                   <div>
-                     {filters.categories.map(category => <span>{category} </span>)}
+                     {filters.categories.map(category => <span onClick={handleClick}>{category} </span>)}
                   </div>
                </article>
 
@@ -86,3 +94,4 @@ export default () =>{
    )
 
 }
+
