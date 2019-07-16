@@ -2,16 +2,18 @@ import React, {useState, useEffect} from 'react'
 import {NavLink} from 'react-router-dom'
 import styles from './Navbar.module.scss'
 import {GoMarkGithub, GoSearch} from 'react-icons/go'
-import {connect} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {changeQuery} from "../../store/actions/imageActions"
 import {fetchImages} from "../../store/actions/imageActions"
 
 
-const Navbar = ({changeQuery, fetchImages}) =>{
+export default () =>{
 
    const [query, setQuery] = useState('')
    const [isSearching, setSearching] = useState(false)
    const [scrollY, setScrollY] = useState(0)
+
+   const dispatch = useDispatch()
 
    useEffect(() =>{
       window.addEventListener('scroll', () =>{
@@ -20,14 +22,16 @@ const Navbar = ({changeQuery, fetchImages}) =>{
    })
 
    const keyUpHandler = e =>{
-      if(e.key === 'Enter') {
-         changeQuery(query)
-         fetchImages(query)
+      if(e.key === 'Enter'){
+         dispatch(changeQuery(query))
+         dispatch(fetchImages(query))
       }
-      else {
+      else{
          setQuery(e.target.value)
       }
    }
+
+
 
    return (
       <nav className={scrollY > 50 ? styles.withBg : null}>
@@ -60,10 +64,3 @@ const Navbar = ({changeQuery, fetchImages}) =>{
       </nav>
    )
 }
-
-const mapDispatchToProps = dispatch => ({
-   fetchImages: query => dispatch(fetchImages(query)),
-   changeQuery: query => dispatch(changeQuery(query))
-})
-
-export default connect(null, mapDispatchToProps)(Navbar)

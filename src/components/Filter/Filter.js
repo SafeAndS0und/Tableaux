@@ -2,11 +2,16 @@ import React, {useState} from 'react'
 import styles from './Filter.module.scss'
 import {FaAngleDoubleDown} from 'react-icons/fa'
 import Fade from '../../assets/transitions/Fade'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+import {fetchImages} from "../../store/actions/imageActions"
+import {updateFilter} from "../../store/actions/filterActions"
+
 
 export default () =>{
 
    const currFilter = useSelector(state => state.filter)
+   const query = useSelector(state => state.image.query)
+   const dispatch = useDispatch()
 
    const [filterExpanded, toggleFilterExpanded] = useState(false)
 
@@ -22,8 +27,10 @@ export default () =>{
    const [filters, setFilters] = useState(f)
 
 
-   const handleClick = e => {
-
+   const handleClick = (e, prop) => {
+      // e.target.className += styles["filter-active"]
+      dispatch(updateFilter(prop, e.target.innerText.trim()))
+      dispatch(fetchImages(query))
    }
 
    return (
@@ -41,7 +48,7 @@ export default () =>{
                <article>
                   <h3>By category</h3>
                   <div>
-                     {filters.categories.map(category => <span onClick={handleClick}>{category} </span>)}
+                     {filters.categories.map(category => <span onClick={e => handleClick(e, 'byCategory')}>{category} </span>)}
                   </div>
                </article>
 
@@ -52,7 +59,11 @@ export default () =>{
                      <div>
                         {
                            filters.colors.map(color =>
-                              <span style={{backgroundColor: color}} className={styles.color}></span>
+                              <span style={{backgroundColor: color}}
+                                    onClick={e => handleClick(e, 'byColors')}
+                                    className={styles.color}>
+                                 {color}
+                              </span>
                            )}
                      </div>
                   </section>
@@ -72,7 +83,7 @@ export default () =>{
                   <div>
                      {
                         filters.styles.map(style =>
-                           <span>{style}</span>
+                           <span onClick={e => handleClick(e, 'byImageType')}>{style}</span>
                         )}
                   </div>
                </article>
@@ -82,7 +93,7 @@ export default () =>{
                   <div>
                      {
                         filters.order.map(orderType =>
-                           <span>{orderType}</span>
+                           <span onClick={e => handleClick(e, 'order')}>{orderType}</span>
                         )}
                   </div>
                </article>
