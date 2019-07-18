@@ -58,12 +58,12 @@ export default () =>{
 
          <Fade toggle={filterExpanded}>
             <div>
-               <button onClick={() => dispatch(fetchImages(query))}>Change the filters</button>
+               <button onClick={() => dispatch(fetchImages(query))}>Change Filter Settings</button>
 
                <article className={styles["by-category"]}>
                   <h3>By category</h3>
                   <div>
-                     <span onClick={e => handleClick(e, 'byCategory', true)}>all</span>
+                     <span onClick={e => handleClick(e, 'byCategory', true)} className={styles.active}>all</span>
                      {filters.categories.map(category => <span onClick={e => handleClick(e, 'byCategory')}>{category} </span>)}
                   </div>
                </article>
@@ -80,7 +80,7 @@ export default () =>{
                                  {color}
                               </span>
                            )}
-                        <span onClick={e => handleClick(e, 'byCategory', true)}> all</span>
+                        <span onClick={e => handleClick(e, 'byCategory', true)} className={styles.active}> all</span>
                      </div>
                   </section>
 
@@ -98,9 +98,11 @@ export default () =>{
                   <h3>By style</h3>
                   <div>
                      {
-                        filters.styles.map(style =>
-                           <span onClick={e => handleClick(e, 'byImageType')}>{style}</span>
-                        )}
+                        filters.styles.map((style, i) =>
+                           <span onClick={e => handleClick(e, 'byImageType')}
+                                 className={i === 0 ? styles.active : null}>{style}</span>
+                        )
+                     }
                   </div>
                </article>
 
@@ -108,9 +110,11 @@ export default () =>{
                   <h3>Sort by</h3>
                   <div>
                      {
-                        filters.order.map(orderType =>
-                           <span onClick={e => handleClick(e, 'order')}>{orderType}</span>
-                        )}
+                        filters.order.map((orderType, i) =>
+                           <span onClick={e => handleClick(e, 'order')}
+                                 className={i === 0 ? styles.active : null}>{orderType}</span>
+                        )
+                     }
                   </div>
                </article>
 
