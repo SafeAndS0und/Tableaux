@@ -24,15 +24,28 @@ export default () =>{
       order: ["popular", "latest"]
    }
 
-   const [filters, setFilters] = useState(f)
+   const [filters] = useState(f)
 
 
-   const handleClick = (e, prop) => {
-      // e.target.className += styles["filter-active"]
-      dispatch(updateFilter(prop, e.target.innerText.trim()))
-      dispatch(fetchImages(query))
+   const handleClick = (e, prop, isStatic) => {
+      if(!isStatic) dispatch(updateFilter(prop, e.target.innerText.trim()))
+      else dispatch(updateFilter(prop, ''))
+
+      // find which article are we in
+      const className = e.target.parentElement.parentElement.className
+      const article = document.querySelector('.' + (className ? className : styles["by-color"]))
+
+      // different node tree for .by-color than other elements, need to check for that first
+      const children = article.className !== styles["by-color"]
+         ? article.children[1].children
+         : article.children[0].children[1].children
+
+      // remove all .active class occurrences
+      Array.from(children).forEach(el => el.classList.remove(styles.active))
+
+      //add to the clicked element .active class
+      e.target.classList.add(styles.active)
    }
-
    return (
       <section className={styles.filter}>
 
@@ -45,15 +58,17 @@ export default () =>{
 
          <Fade toggle={filterExpanded}>
             <div>
-               <article>
+               <button onClick={() => dispatch(fetchImages(query))}>Change the filters</button>
+
+               <article className={styles["by-category"]}>
                   <h3>By category</h3>
                   <div>
+                     <span onClick={e => handleClick(e, 'byCategory', true)}>all</span>
                      {filters.categories.map(category => <span onClick={e => handleClick(e, 'byCategory')}>{category} </span>)}
                   </div>
                </article>
 
                <article className={styles["by-color"]}>
-
                   <section>
                      <h3>By color</h3>
                      <div>
@@ -65,6 +80,7 @@ export default () =>{
                                  {color}
                               </span>
                            )}
+                        <span onClick={e => handleClick(e, 'byCategory', true)}> all</span>
                      </div>
                   </section>
 
@@ -78,7 +94,7 @@ export default () =>{
 
                </article>
 
-               <article>
+               <article className={styles["by-style"]}>
                   <h3>By style</h3>
                   <div>
                      {
@@ -88,7 +104,7 @@ export default () =>{
                   </div>
                </article>
 
-               <article>
+               <article className={styles["order"]}>
                   <h3>Sort by</h3>
                   <div>
                      {

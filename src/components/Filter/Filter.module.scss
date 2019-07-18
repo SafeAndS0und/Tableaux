@@ -25,6 +25,14 @@ $borderColor: #e4e4e4;
   }
 
   div {
+    position: relative;
+
+
+    .active {
+      color: black;
+      transform: scale(1.3);
+      opacity: 1;
+    }
 
     article {
       display: grid;
@@ -42,8 +50,8 @@ $borderColor: #e4e4e4;
         align-self: center;
         margin: 0;
       }
-      div {
 
+      div {
         padding: 18px 0;
         border-bottom: 1px solid $borderColor;
 
@@ -60,10 +68,6 @@ $borderColor: #e4e4e4;
           }
         }
 
-        .filter-active {
-          color: black;
-        }
-
         .color {
           vertical-align: middle;
           display: inline-block;
@@ -76,17 +80,31 @@ $borderColor: #e4e4e4;
           transition: .3s;
           font-size: 0;
 
-          &:hover, .filter-active {
-            transform: scale(1.3);
+          &:hover{
             opacity: 1;
           }
         }
       }
+
+      &:last-child {
+        div {
+          border: none;
+        }
+      }
+
     }
+
+    .by-category {opacity: 1}
+    .by-style {opacity: 1}
+    .order {opacity: 1}
 
     .by-color {
       grid-template-columns: 1fr 1fr;
       align-items: center;
+
+      .active {
+        transform: scale(1.5);
+      }
 
       @media (max-width: $mobile) {
         grid-template-columns: 1fr;
@@ -138,6 +156,26 @@ $borderColor: #e4e4e4;
             }
           }
         }
+      }
+
+    }
+
+
+    button {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      cursor: pointer;
+
+      padding: 8px 26px;
+      background-color: #38d460;
+      color: white;
+      border: 0;
+      border-radius: 16px;
+      z-index: 99;
+
+      &:hover {
+        background-color: #35bb5d;
       }
     }
 
