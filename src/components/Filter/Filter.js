@@ -80,7 +80,7 @@ export default () =>{
                                  {color}
                               </span>
                            )}
-                        <span onClick={e => handleClick(e, 'byCategory', true)} className={styles.active}> all</span>
+                        <span onClick={e => handleClick(e, 'byColors', true)} className={styles.active}> all</span>
                      </div>
                   </section>
 

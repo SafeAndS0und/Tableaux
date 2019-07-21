@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 export const fetchImages = (query = 'nature', limit = 18 ) => {
    return (dispatch, state) => {
 
