@@ -16,7 +16,7 @@ export default () => {
                <Switch>
                   <Route exact path="/" component={Index}/>
                   <Route path="/favorites" component={Favorites}/>
-                  <Route path="/:img_ID" component={Image}/>
+                  <Route path="/:img_ID" onUpdate={() => window.scrollTo(0,0)} component={Image}/>
                </Switch>
 
             </MainLayout>

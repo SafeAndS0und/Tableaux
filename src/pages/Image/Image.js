@@ -12,6 +12,13 @@ const Image = props =>{
    const img = props.images.find(img => img.id.toString() === props.match.params.img_ID)
    if(!img) return null
 
+   const addToStorage = url => {
+      const favorites = JSON.parse(localStorage.getItem('favorites')) || []
+      favorites.push(url)
+      localStorage.setItem('favorites', JSON.stringify(favorites))
+
+   }
+
    return (
       <div className={styles.content}>
          <section className={styles.left}>
@@ -38,7 +45,7 @@ const Image = props =>{
             </div>
 
             <div className={styles.buttons}>
-               <h3 className={styles.favorites}>
+               <h3 className={styles.favorites} onClick={() => addToStorage(img.largeImageURL)}>
                   Add to favorites
                   <MdAddBox/>
                </h3>
