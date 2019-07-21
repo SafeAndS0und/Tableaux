@@ -15,23 +15,30 @@
     img {
       display: block;
       margin: auto;
-      max-width: 100%;
+      width: 100%;
       max-height: 80vh;
+      object-fit: cover;
     }
 
     .numbers {
+      margin-top: 15px;
       color: #343434;
-      padding-left: 65%;
+      padding-left: 62%;
       display: grid;
       grid-auto-flow: column;
       grid-template-columns: repeat(3, auto);
       justify-items: right;
 
       h4 {
-
+        margin: 2px 0;
         svg {
           transform: translateY(2px);
         }
+      }
+
+      p {
+        grid-row: 2;
+        grid-column: 1/-1;
       }
     }
   }
@@ -44,8 +51,9 @@
       align-items: center;
       justify-items: center;
       padding: 15px 24px;
-      background-color: #35bb5d;
-      color: white;
+      background-color: #f9f9f9;
+      color: #565656;
+      min-height: 130px;
 
       h3 {
         font-size: 1.2em;
@@ -66,10 +74,14 @@
       background-color: #35bb5d;
       padding: 12px 7px;
       display: block;
-      margin: 60px auto;
+      margin: 0 auto;
       color: white;
       text-align: center;
       text-decoration: none;
+
+      &:hover {
+        background-color: #34cc5c;
+      }
 
       svg {
         display: block;

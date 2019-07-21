@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import styles from './Image.module.scss'
 import {withRouter} from 'react-router-dom'
+import {MdThumbUp, MdRemoveRedEye} from 'react-icons/md'
 import Fade from '../../assets/transitions/Fade'
 
 function Image({img, history}){
@@ -33,8 +34,8 @@ function Image({img, history}){
                         </div>
 
                         <div className={styles.stats}>
-                           <span>{img.views} views</span>
-                           <span>{img.likes} likes</span>
+                           <span>{img.views} <MdRemoveRedEye/></span>
+                           <span>{img.likes} <MdThumbUp/></span>
                         </div>
 
                      </div>

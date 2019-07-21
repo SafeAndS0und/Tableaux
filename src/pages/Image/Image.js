@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import styles from './Image.module.scss'
 import {MdFileDownload, MdThumbUp, MdRemoveRedEye} from 'react-icons/md'
@@ -19,6 +19,7 @@ const Image = props =>{
                <h4>{img.likes} <MdThumbUp/></h4>
                <h4>{img.views} <MdRemoveRedEye/></h4>
                <h4>{img.downloads} <MdFileDownload/></h4>
+               <p>{img.tags}</p>
             </div>
          </section>
 
@@ -27,11 +28,10 @@ const Image = props =>{
                <h3>By {img.user}</h3>
                <img src={img.userImageURL} alt="userImage"/>
             </div>
-            <p>{img.tags}</p>
 
-            <a download="filename.jpg"  href={img.largeImageURL}>
+            <a download="filename.jpg" target="_blank" href={img.largeImageURL}>
                Click here to get this image
-               <MdFileDownload />
+               <MdFileDownload/>
             </a>
          </section>
       </div>
