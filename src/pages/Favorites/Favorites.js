@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import styles from './Favorites.module.scss'
+import Images from '../../components/Images/Images'
 
 export default props => {
 
@@ -11,7 +12,7 @@ export default props => {
    }, [])
    return (
       <div className={styles.favorites}>
-         {favorites.map(url => <img src={url} alt="one of favorites images"/>)}
+         <Images images={favorites}/>
       </div>
    )
 }

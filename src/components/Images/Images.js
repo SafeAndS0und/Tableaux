@@ -1,17 +1,15 @@
 import React from 'react'
 import Image from './Image'
 import styles from './Images.module.scss'
-import {useSelector} from "react-redux"
 import Fade from '../../assets/transitions/Fade'
 
-export default () => {
+export default ({images, loading, query}) =>{
 
-   const {images, loading, query} = useSelector(state => state.image)
 
    return (
       <section className={styles.images}>
 
-         <h2>Images related to "{query}"</h2>
+         {query ? <h2> {`Images related to "${query}"`} </h2> : null}
 
          <Fade toggle={!loading}>
             <div className={styles["images-container"]}>

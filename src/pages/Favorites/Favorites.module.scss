@@ -1,33 +1,6 @@
 .favorites {
-  display: grid;
-  padding: 30px;
-  grid-gap: 5px;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  display: block;
+  margin: 45px auto;
+  width: 83%;
 
-
-  img {
-    display: block;
-    object-fit: cover;
-    height: 170px;
-    width: 100%;
-    opacity: .9;
-    transition: .3s;
-
-    &:hover {
-      opacity: 1;
-      cursor: pointer;
-    }
-
-    &:nth-child(4){
-      grid-column: span 2;
-    }
-
-    &:nth-child(7){
-      grid-column: span 2;
-    }
-
-    &:nth-child(9){
-      grid-column: span 3;
-    }
-  }
 }

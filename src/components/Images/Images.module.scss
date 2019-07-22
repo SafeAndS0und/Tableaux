@@ -11,6 +11,11 @@
   .images-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    grid-gap: 10px;
+    grid-gap: 6px;
+
+    article:nth-child(2), article:nth-child(3) {
+      grid-column: span 2;
+    }
+
   }
 }
