@@ -8,9 +8,15 @@ function Image({img, history}){
 
    const [showCover, toggleShowCover] = useState(false)
 
+   const proportion = img.imageWidth / img.imageHeight
+   const inlineStyle = {
+      gridColumn: proportion > 1.7 ? "span 2" : null
+   }
+
    return (
 
       <article className={styles.image}
+               style={inlineStyle}
                onClick={() => history.push(`/${img.id}`)}
                onMouseOver={e => toggleShowCover(true)}
                onMouseOut={e => toggleShowCover(false)}
