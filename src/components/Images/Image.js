@@ -10,7 +10,7 @@ function Image({img, history}){
 
    const proportion = img.imageWidth / img.imageHeight
    const inlineStyle = {
-      gridColumn: proportion > 1.7 ? "span 2" : null
+      gridColumn: proportion > 1.7 && "span 2"
    }
 
    return (

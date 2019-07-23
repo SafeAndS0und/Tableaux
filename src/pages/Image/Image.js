@@ -2,15 +2,23 @@ import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import styles from './Image.module.scss'
 import {MdFileDownload, MdThumbUp, MdRemoveRedEye, MdAddBox} from 'react-icons/md'
+import {fetchById} from "../../store/actions/imageActions"
+import {useDispatch} from 'react-redux'
 
 const Image = props =>{
 
+   const dispatch = useDispatch()
    const [hasNoProfileImage, setHasNoProfileImage] = useState(false)
 
    if(props.images.length === 0) return null
 
    const img = props.images.find(img => img.id.toString() === props.match.params.img_ID)
-   if(!img) return null
+
+   if(!img) {
+      const id = props.match.params.img_ID
+      dispatch(fetchById(id))
+   }
+
 
    const addToStorage = img => {
       const favorites = JSON.parse(localStorage.getItem('favorites')) || []

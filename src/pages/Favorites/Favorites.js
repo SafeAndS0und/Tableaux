@@ -8,8 +8,8 @@ export default props => {
 
    useEffect(() => {
       setFavorites(JSON.parse(localStorage.getItem('favorites')))
-
    }, [])
+
    return (
       <div className={styles.favorites}>
          <Images images={favorites}/>
