@@ -1,3 +1,5 @@
+@import '../../assets/css/variables';
+
 .images {
   width: 100%;
   margin: 50px 0;
@@ -7,6 +9,14 @@
     color: #777777;
     font-size: 2em;
   }
+
+  @media (max-width: $mobile) {
+
+    h2 {
+      font-size: 1.3em;
+    }
+  }
+
 
   .images-container {
     display: grid;

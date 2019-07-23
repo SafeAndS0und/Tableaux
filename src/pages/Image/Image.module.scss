@@ -1,10 +1,18 @@
+@import '../../assets/css/variables';
+
 .content {
-  margin: 75px auto;
+  margin: 40px auto;
   width: 93%;
   display: grid;
 
   grid-template-columns: 2.5fr 1fr;
   grid-gap: 20px;
+
+  @media (max-width: $mobile) {
+    grid-auto-flow: row;
+    grid-template-columns: 1fr;
+  }
+
 
   h3, h4, span, p {
     font-weight: 300;
@@ -29,6 +37,12 @@
       grid-auto-flow: column;
       grid-template-columns: repeat(3, auto);
       justify-items: right;
+
+      @media (max-width: $mobile) {
+        grid-template-columns: 1fr 1fr 1fr;
+        padding-left: 0;
+        justify-items: center;
+      }
 
       h4 {
         margin: 2px 0;

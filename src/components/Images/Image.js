@@ -7,10 +7,20 @@ import Fade from '../../assets/transitions/Fade'
 function Image({img, history}){
 
    const [showCover, toggleShowCover] = useState(false)
+   const [wideEnough, setWideEnough] = useState(document.documentElement.clientWidth > 1000)
 
    const proportion = img.imageWidth / img.imageHeight
+
+   // determine if the screen is wide enough to display 2 columns
+   window.addEventListener('resize', () =>{
+      document.documentElement.clientWidth < 1000
+         ? setWideEnough(false)
+         : setWideEnough(true)
+   })
+
+
    const inlineStyle = {
-      gridColumn: proportion > 1.7 && "span 2"
+      gridColumn: (proportion > 1.7 && wideEnough) && "span 2"
    }
 
    return (
