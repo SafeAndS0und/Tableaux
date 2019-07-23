@@ -64,7 +64,7 @@ export default () =>{
                   <h3>By category</h3>
                   <div>
                      <span onClick={e => handleClick(e, 'byCategory', true)} className={styles.active}>all</span>
-                     {filters.categories.map(category => <span onClick={e => handleClick(e, 'byCategory')}>{category} </span>)}
+                     {filters.categories.map(category => <span key={category} onClick={e => handleClick(e, 'byCategory')}>{category} </span>)}
                   </div>
                </article>
 
@@ -75,6 +75,7 @@ export default () =>{
                         {
                            filters.colors.map(color =>
                               <span style={{backgroundColor: color}}
+                                    key={color}
                                     onClick={e => handleClick(e, 'byColors')}
                                     className={styles.color}>
                                  {color}
@@ -100,6 +101,7 @@ export default () =>{
                      {
                         filters.styles.map((style, i) =>
                            <span onClick={e => handleClick(e, 'byImageType')}
+                                 key={style}
                                  className={i === 0 ? styles.active : null}>{style}</span>
                         )
                      }
@@ -112,6 +114,7 @@ export default () =>{
                      {
                         filters.order.map((orderType, i) =>
                            <span onClick={e => handleClick(e, 'order')}
+                                 key={orderType}
                                  className={i === 0 ? styles.active : null}>{orderType}</span>
                         )
                      }

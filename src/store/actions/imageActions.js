@@ -5,12 +5,16 @@ const urlBase = `https://pixabay.com/api/?key=${process.env.REACT_APP_API_KEY}`
 export const fetchById = id =>{
 
    return (dispatch, state) =>{
-      console.log('fetchbyid')
       axios.get(`${urlBase}&id=${id}`)
-         .then(({data}) => console.log(data))
+         .then(({data}) => dispatch(fetchByIdSuccess(data.hits[0])))
          .catch(err => console.log(err))
    }
 }
+
+const fetchByIdSuccess = (image) => ({
+   type: "FETCH_BY_ID_SUCCESS",
+   payload: {image}
+})
 
 export const fetchImages = (query = 'nature', limit = 18) =>{
    return (dispatch, state) =>{

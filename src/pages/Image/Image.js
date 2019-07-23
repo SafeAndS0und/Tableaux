@@ -1,34 +1,37 @@
-import React, {useState} from 'react'
-import {connect} from 'react-redux'
+import React, {useState, useEffect} from 'react'
 import styles from './Image.module.scss'
 import {MdFileDownload, MdThumbUp, MdRemoveRedEye, MdAddBox} from 'react-icons/md'
 import {fetchById} from "../../store/actions/imageActions"
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 const Image = props =>{
 
+   const images = useSelector(state => state.image.images)
    const dispatch = useDispatch()
    const [hasNoProfileImage, setHasNoProfileImage] = useState(false)
 
-   if(props.images.length === 0) return null
 
-   const img = props.images.find(img => img.id.toString() === props.match.params.img_ID)
+   const imgFromStore = images.find(img => img.id.toString() === props.match.params.img_ID)
+   const imgFromFetch = useSelector(state => state.image.image)
 
-   if(!img) {
-      const id = props.match.params.img_ID
-      dispatch(fetchById(id))
-   }
+   // If the image is not in store, fetch id individually
+   const id = props.match.params.img_ID
+   useEffect(() =>{
+      if(!imgFromStore){
+         dispatch(fetchById(id))
+      }
+   }, [])
 
+   const img = imgFromStore || imgFromFetch
 
-   const addToStorage = img => {
+   const addToStorage = img =>{
       const favorites = JSON.parse(localStorage.getItem('favorites')) || []
       favorites.push(img)
       localStorage.setItem('favorites', JSON.stringify(favorites))
-
    }
 
    return (
-      <div className={styles.content}>
+      img ? (<div className={styles.content}>
          <section className={styles.left}>
             <img src={img.largeImageURL} alt=""/>
 
@@ -65,12 +68,9 @@ const Image = props =>{
             </div>
 
          </section>
-      </div>
+      </div>)
+         : null
    )
 }
 
-const mapStateToProps = (state) => ({
-   images: state.image.images
-})
-
-export default connect(mapStateToProps)(Image)
+export default Image

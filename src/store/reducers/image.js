@@ -3,12 +3,19 @@ const initalState = {
    images: [],
    loading: false,
    query: 'nature',
-   limit: 18
+   limit: 18,
+   image: null
 }
 
 export default (state = initalState, action) => {
 
    switch(action.type){
+
+      case "FETCH_BY_ID_SUCCESS" :
+         return {
+            ...state,
+            image: action.payload.image
+         }
 
       case "FETCH_IMAGES_BEGIN" :
          return {
