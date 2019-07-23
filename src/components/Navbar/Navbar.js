@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, withRouter} from 'react-router-dom'
 import styles from './Navbar.module.scss'
 import {GoMarkGithub, GoSearch} from 'react-icons/go'
 import {useDispatch} from 'react-redux'
@@ -7,7 +7,8 @@ import {changeQuery} from "../../store/actions/imageActions"
 import {fetchImages} from "../../store/actions/imageActions"
 
 
-export default () =>{
+
+const Navbar = ({  history }) =>{
 
    const [query, setQuery] = useState('')
    const [isSearching, setSearching] = useState(false)
@@ -25,12 +26,12 @@ export default () =>{
       if(e.key === 'Enter'){
          dispatch(changeQuery(query))
          dispatch(fetchImages(query))
+         history.push('/')
       }
       else{
          setQuery(e.target.value)
       }
    }
-
 
 
    return (
@@ -64,3 +65,5 @@ export default () =>{
       </nav>
    )
 }
+
+export default withRouter(Navbar)

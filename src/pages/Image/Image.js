@@ -27,48 +27,56 @@ const Image = props =>{
    const addToStorage = img =>{
       const favorites = JSON.parse(localStorage.getItem('favorites')) || []
       favorites.push(img)
-      localStorage.setItem('favorites', JSON.stringify(favorites))
+      // removing duplicates
+      const unique =
+         Array
+            .from(new Set(favorites.map(a => a.id)))
+            .map(id =>{
+               return favorites.find(a => a.id === id)
+            })
+
+      localStorage.setItem('favorites', JSON.stringify(unique))
    }
 
    return (
       img ? (<div className={styles.content}>
-         <section className={styles.left}>
-            <img src={img.largeImageURL} alt=""/>
+            <section className={styles.left}>
+               <img src={img.largeImageURL} alt=""/>
 
-            <div className={styles.numbers}>
-               <h4>{img.likes} <MdThumbUp/></h4>
-               <h4>{img.views} <MdRemoveRedEye/></h4>
-               <h4>{img.downloads} <MdFileDownload/></h4>
-               <p>{img.tags}</p>
-            </div>
-         </section>
+               <div className={styles.numbers}>
+                  <h4>{img.likes} <MdThumbUp/></h4>
+                  <h4>{img.views} <MdRemoveRedEye/></h4>
+                  <h4>{img.downloads} <MdFileDownload/></h4>
+                  <p>{img.tags}</p>
+               </div>
+            </section>
 
-         <section className={styles.right}>
+            <section className={styles.right}>
 
-            <div className={styles.author}>
-               <h3>By {img.user}</h3>
+               <div className={styles.author}>
+                  <h3>By {img.user}</h3>
 
-               {
-                  hasNoProfileImage
-                     ? null
-                     : <img src={img.userImageURL} alt="userImage" onError={() => setHasNoProfileImage(true)}/>
-               }
-            </div>
+                  {
+                     hasNoProfileImage
+                        ? null
+                        : <img src={img.userImageURL} alt="userImage" onError={() => setHasNoProfileImage(true)}/>
+                  }
+               </div>
 
-            <div className={styles.buttons}>
-               <h3 className={styles.favorites} onClick={() => addToStorage(img)}>
-                  Add to favorites
-                  <MdAddBox/>
-               </h3>
+               <div className={styles.buttons}>
+                  <h3 className={styles.favorites} onClick={() => addToStorage(img)}>
+                     Add to favorites
+                     <MdAddBox/>
+                  </h3>
 
-               <a download="filename.jpg" target="_blank" href={img.largeImageURL}>
-                  Download Picture
-                  <MdFileDownload/>
-               </a>
-            </div>
+                  <a download="filename.jpg" target="_blank" href={img.largeImageURL}>
+                     Download Picture
+                     <MdFileDownload/>
+                  </a>
+               </div>
 
-         </section>
-      </div>)
+            </section>
+         </div>)
          : null
    )
 }
