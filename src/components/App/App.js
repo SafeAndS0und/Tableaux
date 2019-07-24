@@ -12,7 +12,7 @@ export default () => {
    const dispatch = useDispatch()
 
    useEffect(() => {
-      dispatch(fetchImages({query: "animals", limit: 20, page: 1}))
+      dispatch(fetchImages({query: "nature", limit: 20, page: 1}))
    }, [])
 
    return (

@@ -3,7 +3,7 @@ import styles from './Filter.module.scss'
 import {FaAngleDoubleDown} from 'react-icons/fa'
 import Fade from '../../assets/transitions/Fade'
 import {useSelector, useDispatch} from 'react-redux'
-import {fetchImages, clearImages} from "../../store/actions/imageActions"
+import {fetchImages, clearImages, changePage} from "../../store/actions/imageActions"
 import {updateFilter} from "../../store/actions/filterActions"
 
 
@@ -59,6 +59,7 @@ export default () =>{
          <Fade toggle={filterExpanded}>
             <div>
                <button onClick={() => {
+                  dispatch(changePage(1))
                   dispatch(clearImages())
                   dispatch(fetchImages({query, limit: 20, page: 1}))
                }}>Change Filter Settings</button>

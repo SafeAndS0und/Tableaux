@@ -4,7 +4,7 @@ const initalState = {
    images: [],
    loading: false,
    page: 1,
-   query: 'animals',
+   query: 'nature',
    limit: 20,
    image: null
 }
