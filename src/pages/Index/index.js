@@ -20,6 +20,8 @@ export default props => {
 
 
    function handleScroll() {
+      if(image.page >= 5) return
+
       scrollY = window.pageYOffset
       height = document.documentElement.scrollHeight
 
