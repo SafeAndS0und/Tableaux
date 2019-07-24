@@ -12,13 +12,13 @@ export default () => {
    const dispatch = useDispatch()
 
    useEffect(() => {
-      dispatch(fetchImages({query: "nature", limit: 20, page: 1}))
+      dispatch(fetchImages({query: "animals", limit: 20, page: 1}))
    }, [])
 
    return (
       <div className="App">
          {/* basename="/Tableaux" */}
-         <BrowserRouter >
+         <BrowserRouter basename="/Tableaux">
             <MainLayout>
 
                <Switch>

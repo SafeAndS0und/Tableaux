@@ -3,7 +3,7 @@ import Filter from '../../components/Filter/Filter'
 import styles from './index.module.scss'
 import Images from '../../components/Images/Images'
 import {useSelector, useDispatch} from "react-redux"
-import {fetchImages} from "../../store/actions/imageActions"
+import {fetchImages, changePage} from "../../store/actions/imageActions"
 
 export default props => {
 
@@ -22,13 +22,15 @@ export default props => {
    function handleScroll() {
       scrollY = window.pageYOffset
       height = document.documentElement.scrollHeight
-      console.log(image.query)
 
       if(height - (scrollY + windowSize) <= 150) {
-         if(canIFetch) dispatch(fetchImages({query: image.query, page:   Math.floor(Math.random() *10 ), limit: 20}))
+         if(canIFetch) {
+            dispatch(changePage(++image.page))
+            dispatch(fetchImages({query: image.query, page: image.page, limit: 20}))
+         }
          canIFetch = false
 
-         setTimeout(() => canIFetch = true, 1000)
+         setTimeout(() => canIFetch = true, 2000)
       }
    }
 

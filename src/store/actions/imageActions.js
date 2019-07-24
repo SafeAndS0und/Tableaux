@@ -50,3 +50,8 @@ export const changeQuery = (query) => ({
 export const clearImages = () => ({
    type: "CLEAR_IMAGES"
 })
+
+export const changePage = page => ({
+   type: "CHANGE_PAGE",
+   payload: {page}
+})

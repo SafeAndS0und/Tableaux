@@ -14,7 +14,11 @@ export default ({images, loading, query}) =>{
          <Fade toggle={!loading || images.length > 0}>
             <div className={styles["images-container"]}>
                {
-                  !loading || images.length > 0 ? images.map(img => <Image key={img.id} img={img}/>) : null
+                  !loading || images.length > 0 ? images.map(img => <Image key={img.id} img={img}/>)
+                     : <span className={styles['load-msg']}>
+                        Loading... If it's loading too long maybe my API limit is exceeded. Please try again in a few minutes :(
+                     </span>
+
                }
             </div>
          </Fade>

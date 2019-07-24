@@ -25,5 +25,21 @@
     grid-column-gap: 7px;
     grid-row-gap: 3px;
 
+    .load-msg {
+      font-size: 1.15em;
+      font-weight: 300;
+      text-align: center;
+      margin-top: 30px;
+      transition: 2s;
+      animation-name: show-up;
+      animation-delay: 1s;
+      animation-duration: 2s;
+      animation-fill-mode: both;
+    }
+
+    @keyframes show-up {
+      from {opacity: 0;}
+      to { opacity: .8}
+    }
   }
 }

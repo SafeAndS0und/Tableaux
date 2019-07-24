@@ -1,8 +1,10 @@
+import uniqBy from 'lodash.uniqby'
 
 const initalState = {
    images: [],
    loading: false,
-   query: 'pig',
+   page: 1,
+   query: 'animals',
    limit: 20,
    image: null
 }
@@ -26,9 +28,11 @@ export default (state = initalState, action) => {
          }
 
       case "FETCH_IMAGES_SUCCESS" :
+         // const uniqImages =  [...new Set([...state.images, ...action.payload.images].map(item => item))]
+         const uniqImages = uniqBy([...state.images, ...action.payload.images], 'id')
          return {
             ...state,
-            images: [...state.images, ...action.payload.images],
+            images: uniqImages,
             loading: false
          }
 
@@ -42,6 +46,12 @@ export default (state = initalState, action) => {
          return {
             ...state,
             images: []
+         }
+
+      case "CHANGE_PAGE" :
+         return {
+            ...state,
+            page: action.payload.page
          }
 
       default:
