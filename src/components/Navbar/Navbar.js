@@ -4,10 +4,10 @@ import styles from './Navbar.module.scss'
 import {GoMarkGithub, GoSearch} from 'react-icons/go'
 import {useDispatch} from 'react-redux'
 import {changeQuery, fetchImages, clearImages, changePage} from "../../store/actions/imageActions"
+import logo from './logo_pixa.png'
 
 
-
-const Navbar = ({  history }) =>{
+const Navbar = ({history}) =>{
 
    const [query, setQuery] = useState('')
    const [isSearching, setSearching] = useState(false)
@@ -40,6 +40,9 @@ const Navbar = ({  history }) =>{
 
          <section className={styles.brand}>
             <NavLink to="/">Tableaux</NavLink>
+            <a href="https://pixabay.com" target="_blank">
+               <img src={logo} alt="Pixabay Logo" className={styles.logo}/>
+            </a>
          </section>
 
          <section className={styles.navigation}>
@@ -59,7 +62,9 @@ const Navbar = ({  history }) =>{
 
             <NavLink to="/favorites">Favorites</NavLink>
 
-            <GoMarkGithub className={styles.github}/>
+            <a href="https://github.com/SafeAndS0und/Tableaux" target="_blank">
+               <GoMarkGithub className={styles.github}/>
+            </a>
          </section>
       </nav>
    )
