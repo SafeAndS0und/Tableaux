@@ -2,8 +2,8 @@
 const initalState = {
    images: [],
    loading: false,
-   query: 'nature',
-   limit: 18,
+   query: 'pig',
+   limit: 20,
    image: null
 }
 
@@ -28,7 +28,7 @@ export default (state = initalState, action) => {
       case "FETCH_IMAGES_SUCCESS" :
          return {
             ...state,
-            images: action.payload.images,
+            images: [...state.images, ...action.payload.images],
             loading: false
          }
 
@@ -36,6 +36,12 @@ export default (state = initalState, action) => {
          return {
             ...state,
             query: action.payload.query
+         }
+
+      case "CLEAR_IMAGES" :
+         return {
+            ...state,
+            images: []
          }
 
       default:

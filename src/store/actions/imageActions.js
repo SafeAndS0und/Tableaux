@@ -16,15 +16,15 @@ const fetchByIdSuccess = (image) => ({
    payload: {image}
 })
 
-export const fetchImages = (query = 'nature', limit = 18) =>{
-   return (dispatch, state) =>{
+export const fetchImages = (options) =>{
 
-      dispatch(fetchImagesBegin(query, limit))
+   return (dispatch, state) =>{
+      dispatch(fetchImagesBegin(options.query, options.limit))
 
       const {byCategory, byColors, bySize, byImageType, order} = state()['filter']
-      const filterOptions = `image_type=${byImageType}&order=${order}&category=${byCategory}&colors=${byColors}`
+      const filterOptions = `image_type=${byImageType}&order=${order}&category=${byCategory}&colors=${byColors}&page=${options.page}`
 
-      axios.get(`${urlBase}&q=${query}&per_page=${limit}&${filterOptions}`)
+      axios.get(`${urlBase}&q=${options.query}&per_page=${options.limit}&${filterOptions}`)
          .then(res => dispatch(fetchImagesSuccess(res.data.hits)))
          .catch(err => console.log(err))
    }
@@ -45,4 +45,8 @@ const fetchImagesSuccess = (images) => ({
 export const changeQuery = (query) => ({
    type: "CHANGE_QUERY",
    payload: {query}
+})
+
+export const clearImages = () => ({
+   type: "CLEAR_IMAGES"
 })

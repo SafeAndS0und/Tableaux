@@ -3,7 +3,7 @@ import styles from './Filter.module.scss'
 import {FaAngleDoubleDown} from 'react-icons/fa'
 import Fade from '../../assets/transitions/Fade'
 import {useSelector, useDispatch} from 'react-redux'
-import {fetchImages} from "../../store/actions/imageActions"
+import {fetchImages, clearImages} from "../../store/actions/imageActions"
 import {updateFilter} from "../../store/actions/filterActions"
 
 
@@ -58,7 +58,10 @@ export default () =>{
 
          <Fade toggle={filterExpanded}>
             <div>
-               <button onClick={() => dispatch(fetchImages(query))}>Change Filter Settings</button>
+               <button onClick={() => {
+                  dispatch(clearImages())
+                  dispatch(fetchImages({query, limit: 20, page: 1}))
+               }}>Change Filter Settings</button>
 
                <article className={styles["by-category"]}>
                   <h3>By category</h3>

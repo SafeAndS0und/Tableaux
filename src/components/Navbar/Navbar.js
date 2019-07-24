@@ -3,8 +3,7 @@ import {NavLink, withRouter} from 'react-router-dom'
 import styles from './Navbar.module.scss'
 import {GoMarkGithub, GoSearch} from 'react-icons/go'
 import {useDispatch} from 'react-redux'
-import {changeQuery} from "../../store/actions/imageActions"
-import {fetchImages} from "../../store/actions/imageActions"
+import {changeQuery, fetchImages, clearImages} from "../../store/actions/imageActions"
 
 
 
@@ -24,8 +23,9 @@ const Navbar = ({  history }) =>{
 
    const keyUpHandler = e =>{
       if(e.key === 'Enter'){
+         dispatch(clearImages())
          dispatch(changeQuery(query))
-         dispatch(fetchImages(query))
+         dispatch(fetchImages({query, page: 1, limit: 20}))
          history.push('/')
       }
       else{
@@ -57,8 +57,6 @@ const Navbar = ({  history }) =>{
             </div>
 
             <NavLink to="/favorites">Favorites</NavLink>
-
-            <div className={styles.language}>ENG</div>
 
             <GoMarkGithub className={styles.github}/>
          </section>

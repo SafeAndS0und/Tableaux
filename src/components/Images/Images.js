@@ -11,10 +11,10 @@ export default ({images, loading, query}) =>{
 
          {query ? <h2> {`Images related to "${query}"`} </h2> : null}
 
-         <Fade toggle={!loading}>
+         <Fade toggle={!loading || images.length > 0}>
             <div className={styles["images-container"]}>
                {
-                  !loading ? images.map(img => <Image key={img.id} img={img}/>) : null
+                  !loading || images.length > 0 ? images.map(img => <Image key={img.id} img={img}/>) : null
                }
             </div>
          </Fade>
