@@ -4,7 +4,7 @@ import {FaAngleDoubleDown} from 'react-icons/fa'
 import Fade from '../../assets/transitions/Fade'
 import {useSelector, useDispatch} from 'react-redux'
 import {fetchImages, clearImages, changePage} from "../../store/actions/imageActions"
-import {updateFilter} from "../../store/actions/filterActions"
+import {updateFilter, updateFilterBySize} from "../../store/actions/filterActions"
 
 
 export default () =>{
@@ -27,9 +27,16 @@ export default () =>{
    const [filters] = useState(f)
 
 
-   const handleClick = (e, prop, isStatic) => {
-      if(!isStatic) dispatch(updateFilter(prop, e.target.innerText.trim()))
-      else dispatch(updateFilter(prop, ''))
+   const handleClick = (e, prop, isStatic, isInput) =>{
+
+      if(isInput){
+         dispatch(updateFilterBySize(prop, e.target.value))
+         return
+      }
+
+      !isStatic
+         ? dispatch(updateFilter(prop, e.target.innerText.trim()))
+         : dispatch(updateFilter(prop, ''))
 
       // find which article are we in
       const className = e.target.parentElement.parentElement.className
@@ -58,17 +65,19 @@ export default () =>{
 
          <Fade toggle={filterExpanded}>
             <div>
-               <button onClick={() => {
+               <button onClick={() =>{
                   dispatch(changePage(1))
                   dispatch(clearImages())
                   dispatch(fetchImages({query, limit: 20, page: 1}))
-               }}>Change Filter Settings</button>
+               }}>Change Filter Settings
+               </button>
 
                <article className={styles["by-category"]}>
                   <h3>By category</h3>
                   <div>
                      <span onClick={e => handleClick(e, 'byCategory', true)} className={styles.active}>all</span>
-                     {filters.categories.map(category => <span key={category} onClick={e => handleClick(e, 'byCategory')}>{category} </span>)}
+                     {filters.categories.map(category => <span key={category}
+                                                               onClick={e => handleClick(e, 'byCategory')}>{category} </span>)}
                   </div>
                </article>
 
@@ -92,8 +101,10 @@ export default () =>{
                   <section>
                      <h3>By size</h3>
                      <div>
-                        <input type="text" placeholder="Minimal Width"/>
-                        <input type="text" placeholder="Maximal Width"/>
+                        <input type="text" onBlur={e => handleClick(e, 'width', false, true)}
+                               placeholder="Minimal Width"/>
+                        <input type="text" onBlur={e => handleClick(e, 'height', false, true)}
+                               placeholder="Maximal Width"/>
                      </div>
                   </section>
 

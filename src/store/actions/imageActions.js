@@ -22,7 +22,8 @@ export const fetchImages = (options) =>{
       dispatch(fetchImagesBegin(options.query, options.limit))
 
       const {byCategory, byColors, bySize, byImageType, order} = state()['filter']
-      const filterOptions = `image_type=${byImageType}&order=${order}&category=${byCategory}&colors=${byColors}&page=${options.page}`
+      const filterOptions = `image_type=${byImageType}&order=${order}&category=${byCategory}
+      &colors=${byColors}&page=${options.page}&min_width=${bySize.width}&min_height=${bySize.height}`
 
       axios.get(`${urlBase}&q=${options.query}&per_page=${options.limit}&${filterOptions}`)
          .then(res => dispatch(fetchImagesSuccess(res.data.hits)))
