@@ -1,6 +1,6 @@
 
 **Tableaux** is just a fancy french word for "images". And really that's all there is to it. Nothing but images (of cows for example). 
-I just used Pixabay's API to fetch the images and display it in a nice looking grid and gave it some basic functionality. 
+I just used Pixabay's API to fetch the images and display it in a nice looking grid, gave it some basic functionality. 
 Quite simple but I was interested in writing good code with React and Redux rather than making new Instagram.
 
 Click [here](https://safeands0und.github.io/Tableaux/) to see it live. 
